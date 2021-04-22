@@ -240,6 +240,7 @@ module Lita
         branch      = 'nil'
         stage       = 'nil'
         checkmaster = false
+        restart_only = false
         params      = {}
 
         core = string.split(' to ')
@@ -271,6 +272,8 @@ module Lita
               params['DBROLLBACK'] = true
             elsif param == 'checkmaster'
               checkmaster = true
+            elsif param == 'restart_only'
+              restart_only = true
             elsif param.split(':').length == 2
               key, value = param.split(':')
               # value = value_map(value)
@@ -319,6 +322,7 @@ module Lita
             job_params = {
               'STAGE'       => s,
               'CHECKMASTER' => checkmaster,
+              'RESTART_ONLY' => restart_only,
               'PROJECTS'    => {}
             }
 
